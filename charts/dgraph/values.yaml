@@ -72,6 +72,26 @@ zero:
   ## This is the node affinity settings as defined in
   ## https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#node-affinity-beta-feature
   nodeAffinity: {}
+  
+  # initContainers:
+  #   - name: abc
+  #     image: 123
+  #     command: ["{ abc }"]
+  #     volumeMounts:
+  #       - name: dataDir
+  #         mountPath: /datadir
+  #       - name: bdir
+  #         mountPath: /cmc
+  #   - name: def
+  #     image: 456
+  #     command: [ "/bin/bash", "-c", " from {env}"]
+  #     volumeMounts:
+  #       - name: dataDir
+  #         mountPath: /datadir
+  #       - name: bdir
+  #         mountPath: /cmc    
+  # pullSecrets:
+  #    - myRegistryKeySecretName
 
   ## Kubernetes configuration
   ## For minikube, set this to NodePort, elsewhere use LoadBalancer
@@ -175,6 +195,26 @@ alpha:
   ## This is the node affinity settings as defined in
   ## https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#node-affinity-beta-feature
   nodeAffinity: {}
+
+  # initContainers:
+  #   - name: abc
+  #     image: 123
+  #     command: ["{ abc }"]
+  #     volumeMounts:
+  #       - name: dataDir
+  #         mountPath: /datadir
+  #       - name: bdir
+  #         mountPath: /cmc
+  #   - name: def
+  #     image: 456
+  #     command: [ "/bin/bash", "-c", " from {env}"]
+  #     volumeMounts:
+  #       - name: dataDir
+  #         mountPath: /datadir
+  #       - name: bdir
+  #         mountPath: /cmc    
+  # pullSecrets:
+  #    - myRegistryKeySecretName
 
   ## Kubernetes configuration
   ## For minikube, set this to NodePort, elsewhere use LoadBalancer

@@ -85,6 +85,7 @@ spec:
       tolerations:
 {{ toYaml .Values.alpha.tolerations | indent 8 }}
       {{- end }}
+{{- include "dgraph.alpha.initcontainers" . | indent 6 }}      
       containers:
       - name: {{ template "dgraph.alpha.fullname" . }}
         image: {{ template "dgraph.image" . }}

@@ -85,6 +85,7 @@ spec:
       tolerations:
 {{ toYaml .Values.zero.tolerations | indent 8 }}
       {{- end }}
+{{- include "dgraph.zero.initcontainers" . | indent 6 }}
       containers:
       - name: {{ template "dgraph.zero.fullname" . }}
         image: {{ template "dgraph.image" . }}

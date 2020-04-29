@@ -80,6 +80,16 @@ imagePullSecrets:
 {{- range .Values.image.pullSecrets }}
   - name: {{ . }}
 {{- end }}
+{{- else if .Values.zero.pullSecrets }}
+imagePullSecrets:
+{{- range .Values.zero.pullSecrets }}
+  - name: {{ . }}
+{{- end }}
+{{- else if .Values.alpha.pullSecrets }}
+imagePullSecrets:
+{{- range .Values.alpha.pullSecrets }}
+  - name: {{ . }}
+{{- end }}
 {{- end -}}
 {{- end -}}
 
@@ -98,7 +108,48 @@ Create a default fully qualified ratel name.
 {{ template "dgraph.fullname" . }}-{{ .Values.ratel.name }}
 {{- end -}}
 
+{{- define "dgraph.zero.initcontainers" -}}
 
+{{- if .Values.zero.initContainers }}      
+initContainers:
+{{- range .Values.zero.initContainers }}
+- name: {{ .name }}
+  image: {{ .image }}
+  command:
+  {{- range .command }}
+    - {{ . }}
+  {{- end}}
+  {{- if .volumeMounts }}
+  volumeMounts:
+  {{- range .volumeMounts }}
+    - name: {{ .name }}
+      mountPath: {{ .mountPath }}
+  {{- end }}
+  {{- end }}
+{{- end }}
+{{- end }}
 
+{{- end -}}
 
+{{- define "dgraph.alpha.initcontainers" -}}
 
+{{- if .Values.alpha.initContainers }}      
+initContainers:
+{{- range .Values.alpha.initContainers }}
+- name: {{ .name }}
+  image: {{ .image }}
+  command:
+  {{- range .command }}
+    - {{ . }}
+  {{- end}}
+  {{- if .volumeMounts }}
+  volumeMounts:
+  {{- range .volumeMounts }}
+    - name: {{ .name }}
+      mountPath: {{ .mountPath }}
+  {{- end }}
+  {{- end }}
+{{- end }}
+{{- end }}
+
+{{- end -}}
