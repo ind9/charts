@@ -115,10 +115,17 @@ initContainers:
 {{- range .Values.zero.initContainers }}
 - name: {{ .name }}
   image: {{ .image }}
+  {{- if .env }}
+  env:
+  {{- range .env }}
+  - name: {{ .name }}
+    value: {{ .value }}
+  {{- end }}
+  {{- end }}
   command:
   {{- range .command }}
     - {{ . }}
-  {{- end}}
+  {{- end }}
   {{- if .volumeMounts }}
   volumeMounts:
   {{- range .volumeMounts }}
@@ -138,6 +145,13 @@ initContainers:
 {{- range .Values.alpha.initContainers }}
 - name: {{ .name }}
   image: {{ .image }}
+  {{- if .env }}
+  env:
+  {{- range .env }}
+  - name: {{ .name }}
+    value: {{ .value }}
+  {{- end }}
+  {{- end }}
   command:
   {{- range .command }}
     - {{ . }}
