@@ -77,6 +77,9 @@ spec:
         fsGroup: {{ .Values.alpha.securityContext.fsGroup }}
         runAsUser: {{ .Values.alpha.securityContext.runAsUser }}
       {{- end }}
+      {{- if .Values.alpha.serviceAccount.create }}
+      serviceAccountName: {{ include "dgraph.alpha.serviceAccountName" . }}       
+      {{- end }}
       {{- if .Values.alpha.nodeSelector }}
       nodeSelector:
 {{ toYaml .Values.alpha.nodeSelector | indent 8 }}

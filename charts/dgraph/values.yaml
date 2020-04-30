@@ -98,6 +98,12 @@ zero:
   # postStart:
   #   command: ["/bin/bash","-c","echo 'post start script'"]
 
+  serviceAccount:
+    create: true
+    name: zero-sa
+    #annotations:
+    #  eks.amazonaws.com/role-arn: arn:aws:iam::123456789:role/zero_role
+
   ## Kubernetes configuration
   ## For minikube, set this to NodePort, elsewhere use LoadBalancer
   ##
@@ -226,6 +232,12 @@ alpha:
   ##
   service:
     type: ClusterIP
+
+  serviceAccount:
+    create: true
+    name: alpha-sa
+    #annotations:
+    #  eks.amazonaws.com/role-arn: arn:aws:iam::123456789:role/alpha_role
 
   ## dgraph Pod Security Context
   securityContext:

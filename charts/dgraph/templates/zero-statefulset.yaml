@@ -77,6 +77,11 @@ spec:
         fsGroup: {{ .Values.zero.securityContext.fsGroup }}
         runAsUser: {{ .Values.zero.securityContext.runAsUser }}
       {{- end }}
+
+      {{- if .Values.zero.serviceAccount.create }}
+      serviceAccountName: {{ include "dgraph.zero.serviceAccountName" . }}       
+      {{- end }}
+
       {{- if .Values.zero.nodeSelector }}
       nodeSelector:
 {{ toYaml .Values.zero.nodeSelector | indent 8 }}
