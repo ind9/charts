@@ -167,26 +167,3 @@ initContainers:
 {{- end }}
 
 {{- end -}}
-
-{{/*
-Create the name of the service account to use
-*/}}
-{{- define "dgraph.zero.serviceAccountName" -}}
-{{- if .Values.zero.serviceAccount.create -}}
-    {{ default (include "dgraph.zero.fullname" .) .Values.zero.serviceAccount.name }}
-{{- else -}}
-    {{ default "default" .Values.zero.serviceAccount.name }}
-{{- end -}}
-{{- end -}}
-
-
-{{/*
-Create the name of the service account to use
-*/}}
-{{- define "dgraph.alpha.serviceAccountName" -}}
-{{- if .Values.alpha.serviceAccount.create -}}
-    {{ default (include "dgraph.alpha.fullname" .) .Values.alpha.serviceAccount.name }}
-{{- else -}}
-    {{ default "default" .Values.alpha.serviceAccount.name }}
-{{- end -}}
-{{- end -}}

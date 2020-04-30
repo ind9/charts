@@ -78,8 +78,8 @@ spec:
         runAsUser: {{ .Values.zero.securityContext.runAsUser }}
       {{- end }}
 
-      {{- if .Values.zero.serviceAccount.create }}
-      serviceAccountName: {{ include "dgraph.zero.serviceAccountName" . }}       
+      {{- if .Values.zero.serviceAccount.name }}
+      serviceAccountName: {{ .Values.zero.serviceAccount.name }}       
       {{- end }}
 
       {{- if .Values.zero.nodeSelector }}
