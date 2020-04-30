@@ -89,6 +89,15 @@ spec:
       containers:
       - name: {{ template "dgraph.alpha.fullname" . }}
         image: {{ template "dgraph.image" . }}
+        {{- if .Values.alpha.postStart }}
+        lifecycle:
+          postStart:
+            exec:
+              command:
+              {{- range .Values.alpha.postStart.command }}
+                - {{ . }}
+              {{- end }}  
+        {{- end }}
         ports:
         - containerPort: 7080
           name: alpha-grpc-int

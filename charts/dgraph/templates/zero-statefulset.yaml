@@ -89,6 +89,15 @@ spec:
       containers:
       - name: {{ template "dgraph.zero.fullname" . }}
         image: {{ template "dgraph.image" . }}
+        {{- if .Values.zero.postStart }}
+        lifecycle:
+          postStart:
+            exec:
+              command:
+              {{- range .Values.zero.postStart.command }}
+                - {{ . }}
+              {{- end }}  
+        {{- end }}
         ports:
         - containerPort: 5080
           name: zero-grpc

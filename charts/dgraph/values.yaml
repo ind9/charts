@@ -77,7 +77,7 @@ zero:
   #   - name: abc
   #     image: 123
   #     env:
-  #     - name: S3_PATH
+  #     - name: "S3_PATH"
   #       value: "s3://bucket/path/file"
   #     command: ["{ abc }"]
   #     volumeMounts:
@@ -95,6 +95,8 @@ zero:
   #         mountPath: /cmc    
   # pullSecrets:
   #    - myRegistryKeySecretName
+  # postStart:
+  #   command: ["/bin/bash","-c","echo 'post start script'"]
 
   ## Kubernetes configuration
   ## For minikube, set this to NodePort, elsewhere use LoadBalancer
